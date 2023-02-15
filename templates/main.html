@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}
+.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style>
+<head>
+    <title>NBA Players Classification</title>
+</head>
+<h1>NBA Players: Investors Portal</h1>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        Games Played:
+        <input name="GP" type="number" step="0.01" required>
+        <br>
+        <br> Minutes Played:
+        <input name="MIN" type="number" step="0.01" required>
+        <br>
+        <br> Field goal percent:
+        <input name="FG%" type="number" step="0.01" required>
+        <br>
+        <br> 3 Point made:
+        <input name="3P Made" type="number" step="0.01" required>
+        <br>
+        <br> 3 Point percent:
+        <input name="3P%" type="number" step="0.01" required>
+        <br>
+        <br> Free throw percent:
+        <input name="FT%" type="number" step="0.01" required>
+        <br>
+        <br>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" align="center">
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Is this player worth investing in?
+           <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+</html>
